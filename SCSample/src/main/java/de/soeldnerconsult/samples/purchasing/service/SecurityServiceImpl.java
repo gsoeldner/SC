@@ -53,13 +53,13 @@ public class SecurityServiceImpl implements SecurityService{
 	}
 
 	@Override
-	public Collection<Role> findRolyByName(String roleName) throws DataAccessException {
-		return roleRep.findRolyByName(roleName);
+	public Collection<Role> findRoleByName(String roleName) throws DataAccessException {
+		return roleRep.findRoleByName(roleName);
 	}
 
 	@Override
-	public Role findRolyById(String id) throws DataAccessException {
-		return roleRep.findRolyById(id);
+	public Role findRoleById(String id) throws DataAccessException {
+		return roleRep.findRoleById(id);
 	}
 
 	@Override

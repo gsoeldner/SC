@@ -26,15 +26,15 @@ public class JpaRoleRepositoryImpl implements RoleRepository {
 	}
 	
 	@Override
-	public Collection<Role> findRolyByName(String roleName)
+	public Collection<Role> findRoleByName(String roleName)
 			throws DataAccessException {
-		Query query = em.createQuery("from Role role where role.roleName like :roleName");
+		Query query = em.createQuery("from Role role where role.name like :roleName");
 		query.setParameter("roleName", roleName + "%");
 		return query.getResultList();
 	}
 
 	@Override
-	public Role findRolyById(String id) throws DataAccessException {
+	public Role findRoleById(String id) throws DataAccessException {
 		Query query = em.createQuery("from Role role where role.id = :roleId");
 		query.setParameter("roleId", id);
 		return (Role)query.getSingleResult();

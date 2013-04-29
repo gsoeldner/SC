@@ -24,7 +24,7 @@ public interface RoleRepository {
      * @return a <code>Collection</code> of matching <code>Role</code>s (or an empty <code>Collection</code> if none
      *         found)
      */
-	Collection<Role> findRolyByName(String roleName) throws DataAccessException;
+	Collection<Role> findRoleByName(String roleName) throws DataAccessException;
 	
 	/**
      * Retrieve an <code>Role</code> from the data store by id.
@@ -34,7 +34,7 @@ public interface RoleRepository {
      * @throws org.springframework.dao.DataRetrievalFailureException
      *          if not found
      */
-	Role findRolyById(String id) throws DataAccessException;
+	Role findRoleById(String id) throws DataAccessException;
 	
 	/**
      * Save an <code>Role</code> to the data store, either inserting or updating it.

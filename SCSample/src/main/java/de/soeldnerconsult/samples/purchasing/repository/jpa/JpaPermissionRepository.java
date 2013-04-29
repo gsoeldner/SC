@@ -30,7 +30,7 @@ public class JpaPermissionRepository implements PermissionRepository {
 	public Collection<Permission> findPermissionByName(String name)
 			throws DataAccessException {
 		Query query = em.createQuery("from Permission perm where perm.name LIKE :name");
-		query.setParameter("name", name);
+		query.setParameter("name", name + "%");
 		return query.getResultList();
 		
 	}
