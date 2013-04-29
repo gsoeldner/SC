@@ -2,6 +2,7 @@ package de.soeldnerconsult.samples.purchasing.service;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class SecurityServiceImpl implements SecurityService{
 	RoleRepository roleRep; 
 	PermissionRepository permRep;
 	
-	
+	@Autowired
 	public SecurityServiceImpl(UserRepository userRep, RoleRepository roleRep, PermissionRepository permRep)
 	{
 		this.userRep = userRep;

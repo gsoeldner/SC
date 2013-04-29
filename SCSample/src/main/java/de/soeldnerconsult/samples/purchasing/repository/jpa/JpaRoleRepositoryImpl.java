@@ -3,6 +3,7 @@ package de.soeldnerconsult.samples.purchasing.repository.jpa;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,14 @@ import de.soeldnerconsult.samples.purchasing.repository.RoleRepository;
 @Repository
 public class JpaRoleRepositoryImpl implements RoleRepository {
 
-	@Autowired
+
 	EntityManager em;
+	
+	@PersistenceContext
+	public void setEntityManager(EntityManager em)
+	{
+		this.em = em;		
+	}
 	
 	@Override
 	public Collection<Role> findRolyByName(String roleName)

@@ -1,5 +1,6 @@
 
 
+
     drop table permission if exists;
 
     drop table role if exists;
@@ -68,3 +69,4 @@
         add constraint FK143BF46ABCA17DC1 
         foreign key (user_id) 
         references user;
+        

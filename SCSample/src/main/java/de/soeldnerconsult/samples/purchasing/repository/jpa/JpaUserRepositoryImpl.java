@@ -15,8 +15,14 @@ import de.soeldnerconsult.samples.purchasing.repository.UserRepository;
 @Repository
 public class JpaUserRepositoryImpl implements UserRepository {
 
-	@PersistenceContext
+
 	private EntityManager em;
+	
+	@PersistenceContext
+	public void setEntityManager(EntityManager em)
+	{
+		this.em = em;		
+	}
 	
 	@Override
 	public Collection<User> findUserByLastName(String lastName)

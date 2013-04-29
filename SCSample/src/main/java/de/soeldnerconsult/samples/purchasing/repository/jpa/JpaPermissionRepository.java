@@ -3,9 +3,11 @@ package de.soeldnerconsult.samples.purchasing.repository.jpa;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +17,14 @@ import de.soeldnerconsult.samples.purchasing.repository.PermissionRepository;
 @Repository
 public class JpaPermissionRepository implements PermissionRepository {
 
-	@Autowired
-	EntityManager em;
+
+	EntityManager  em;
+	
+	@PersistenceContext
+	public void setEntityManager(EntityManager em)
+	{
+		this.em = em;		
+	}
 	
 	@Override
 	public Collection<Permission> findPermissionByName(String name)
