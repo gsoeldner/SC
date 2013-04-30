@@ -3,8 +3,10 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
@@ -23,11 +25,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="de.soeldnerconsult.samples" />
+	<context:component-scan base-package="de.soeldnerconsult.samples.web" />
 	
-<!-- 		<beans:bean id="test" class="de.soeldnerconsult.samples.purchasing.controller.UserController" > -->
-<!-- 			<constructor-arg ref="securityService"/> -->
-<!-- 		</beans:bean> -->
+
+	
+<mvc:default-servlet-handler />
 	
 	
 </beans:beans>

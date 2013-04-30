@@ -17,7 +17,7 @@
 	
 	<context:property-placeholder location="classpath:spring/data-access.properties"/>
 	
-	<tx:annotation-driven/>
+	<tx:annotation-driven />
 	
 	<beans profile="jpa,spring-data-jpa">
         <!-- JPA EntityManagerFactory -->

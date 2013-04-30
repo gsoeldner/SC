@@ -60,6 +60,25 @@ public abstract class AbstractSecurityServiceTests {
 	
 	@Test
 	@Transactional
+	public void editUser()
+	{
+		User user = rep.findUserById("1");
+		user.setFirstName("Matthias");
+		user.setLastName("Elbert");
+		user.setUsername("melbert");
+		user.setPassword("123");
+		user.setStatus(UserStatus.ENABLED);
+		user.setDateCreated(DateTime.now());
+		user.setDateModified(DateTime.now());
+		
+		rep.saveUser(user);
+		User newUser = rep.findUserById("1");
+		assertEquals("melbert", newUser.getUsername());
+	}
+	
+	
+	@Test
+	@Transactional
 	public void findRole()
 	{
 		Role role = rep.findRoleById("1");
@@ -88,6 +107,18 @@ public abstract class AbstractSecurityServiceTests {
 	
 	@Test
 	@Transactional
+	public void editRole()
+	{
+		Role role = rep.findRoleById("1");
+		role.setName("poweruser");		
+		role.setVersion(1);
+		rep.saveRole(role);
+		Role newRole = rep.findRoleById("1");
+		assertEquals("poweruser", newRole.getName());
+	}
+	
+	@Test
+	@Transactional
 	public void findPermission()
 	{
 		Permission permission = rep.findPermissionById("1");
@@ -112,6 +143,18 @@ public abstract class AbstractSecurityServiceTests {
 		rep.savePermission(permission);
 		Collection<Permission> newPermissions = rep.findPermissionByName("");
 		assertEquals(2, newPermissions.size());
+	}
+	
+	@Test
+	@Transactional
+	public void editPermission()
+	{
+		Permission permission = rep.findPermissionById("1");
+		permission.setName("PERM_WRITE");		
+		permission.setVersion(1);
+		rep.savePermission(permission);
+		Permission newPermission = rep.findPermissionById("1");
+		assertEquals("PERM_WRITE", newPermission.getName());
 	}
 	
 	@Test

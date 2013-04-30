@@ -3,6 +3,7 @@ package de.soeldnerconsult.samples.purchasing.repository;
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.soeldnerconsult.samples.purchasing.model.Permission;
 
@@ -14,6 +15,7 @@ import de.soeldnerconsult.samples.purchasing.model.Permission;
  * @author Guido Soeldner
 
  */
+@Transactional
 public interface PermissionRepository {
 	
 	/**

@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.soeldnerconsult.samples.purchasing.model.User;
 import de.soeldnerconsult.samples.purchasing.repository.UserRepository;

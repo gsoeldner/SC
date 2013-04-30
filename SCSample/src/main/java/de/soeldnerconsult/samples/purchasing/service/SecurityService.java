@@ -3,11 +3,12 @@ package de.soeldnerconsult.samples.purchasing.service;
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.soeldnerconsult.samples.purchasing.model.Permission;
 import de.soeldnerconsult.samples.purchasing.model.Role;
 import de.soeldnerconsult.samples.purchasing.model.User;
-
+@Transactional
 public interface SecurityService {
 	
 	Collection<User> findUserByLastName(String lastName) throws DataAccessException;

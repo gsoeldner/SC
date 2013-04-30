@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import de.soeldnerconsult.samples.purchasing.model.*;
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.dao.DataAccessException;
  * @author Guido Soeldner
 
  */
+@Transactional
 public interface UserRepository {
 
 	/**
