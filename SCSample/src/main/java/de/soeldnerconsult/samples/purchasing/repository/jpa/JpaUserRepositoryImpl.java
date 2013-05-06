@@ -36,7 +36,7 @@ public class JpaUserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User findUserById(String id) throws DataAccessException {
+	public User findUserById(String id) throws DataAccessException {		
 		Query query = this.em.createQuery("from User user where user.id = :id");
 		query.setParameter("id", id);
 		return (User)query.getSingleResult();

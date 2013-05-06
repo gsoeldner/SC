@@ -82,7 +82,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+<dependency>
+  <groupId> org.codehaus.jackson</groupId>
+  <artifactId>jackson-mapper-asl</artifactId>
+  <version>1.9.5</version>
+</dependency>
 		
         <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -257,7 +261,7 @@
             <version>${hibernate-validator.version}</version>
         </dependency>
         
-    	
+   
         
         
         <!-- Date -->
@@ -301,6 +305,7 @@
                 <version>${commons-dbcp.version}</version>
                 <scope>runtime</scope>
             </dependency>
+       
 	</dependencies>
     <build>
         <plugins>

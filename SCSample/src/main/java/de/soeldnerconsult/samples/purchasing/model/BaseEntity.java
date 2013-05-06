@@ -4,6 +4,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
+import java.io.Serializable;
+
 /**
  * Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.
  * See: http://www.onjava.com/pub/a/onjava/2006/09/13/dont-let-hibernate-steal-your-identity.html
@@ -12,14 +14,19 @@ import javax.persistence.Version;
  */
 
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements  Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -579025866051121788L;
+
 	@Id
 	private String id = java.util.UUID.randomUUID().toString();
 	
 	@Version
     private Integer version;
-
+		 
     public String getId() {
         return id;
     }
