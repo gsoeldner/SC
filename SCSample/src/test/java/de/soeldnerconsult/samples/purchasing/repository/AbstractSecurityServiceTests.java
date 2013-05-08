@@ -76,6 +76,14 @@ public abstract class AbstractSecurityServiceTests {
 		assertEquals("melbert", newUser.getUsername());
 	}
 	
+	@Test
+	@Transactional
+	public void deleteUser()
+	{
+		rep.deleteUser("1");
+		
+		assertEquals(3, rep.findUserByLastName("").size());
+	}
 	
 	@Test
 	@Transactional

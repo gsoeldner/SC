@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/main-config.xml"})
+@ContextConfiguration(locations = {"classpath:spring/test-config.xml"})
 @ActiveProfiles("jpa")
 public class SecurityServiceJPATests extends AbstractSecurityServiceTests {
 

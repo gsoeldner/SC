@@ -86,4 +86,10 @@ public class SecurityServiceImpl implements SecurityService{
 		
 	}
 
+	@Override
+	public void deleteUser(String id) throws DataAccessException {
+		userRep.deleteUser(id);
+		
+	}
+
 }

@@ -48,4 +48,12 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
 	}
 
+	@Override
+	public void deleteUser(String id) throws DataAccessException {
+		
+		this.em.remove(this.findUserById(id));
+		
+		
+	}
+
 }

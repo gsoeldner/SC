@@ -17,6 +17,8 @@ public interface SecurityService {
 	
 	void saveUser(User user) throws DataAccessException;
 	
+	void deleteUser(String id) throws DataAccessException;
+	
 	Collection<Role> findRoleByName(String roleName) throws DataAccessException;
 	
 	Role findRoleById(String id) throws DataAccessException;

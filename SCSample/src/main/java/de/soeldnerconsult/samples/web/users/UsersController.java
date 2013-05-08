@@ -86,8 +86,8 @@ public class UsersController {
 		public @ResponseBody JqgridResponse<User> records(
 //	    		@RequestParam("_search") Boolean search,
 //	    		@RequestParam(value="filters", required=false) String filters,
-//	    		@RequestParam(value="page", required=false) Integer page,
-//	    		@RequestParam(value="rows", required=false) Integer rows,
+//				@RequestParam(value="page", required=false) Integer page,
+//	    		@RequestParam(value="rows", required=false) Integer rows
 //	    		@RequestParam(value="sidx", required=false) String sidx,
 //	    		@RequestParam(value="sord", required=false) String sord
 	    		) {
@@ -116,7 +116,8 @@ public class UsersController {
 					@RequestParam String username,
 					@RequestParam String password,
 					@RequestParam String firstName,
-					@RequestParam String lastName
+					@RequestParam String lastName,
+					@RequestParam String id
 		    		) {
 	    	User user = new User();
 	    	user.setUsername(username);
@@ -131,5 +132,29 @@ public class UsersController {
             
             return new StatusResponse(true);
 		}
+	    
+	    @RequestMapping(value="/records", produces="application/json", method=RequestMethod.PUT)
+		public @ResponseBody StatusResponse update(				
+				@RequestParam String username,
+				@RequestParam String password,
+				@RequestParam String firstName,
+				@RequestParam String lastName,
+				@RequestParam String id) {
+			
+			User existingUser = sec.findUserById(id);
+			existingUser.setUsername(username);
+			existingUser.setFirstName(firstName);
+			existingUser.setLastName(lastName);
+			sec.saveUser(existingUser);
+			return new StatusResponse(true);
+		}
+	    
+	    @RequestMapping(value="/records", produces="application/json", method=RequestMethod.DELETE)
+	  		public @ResponseBody StatusResponse delete(				
+	  				@RequestParam String id) {
+	  			
+	  			sec.deleteUser(id);
+	  			return new StatusResponse(true);
+	  		}
 	    
 }

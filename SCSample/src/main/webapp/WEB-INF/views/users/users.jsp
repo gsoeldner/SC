@@ -83,25 +83,25 @@
 				} 
 		);
 		
-// 		$("#grid").navButtonAdd('#pager',
-// 				{ 	caption:"Edit", 
-// 					buttonicon:"ui-icon-pencil", 
-// 					onClickButton: editRow,
-// 					position: "last", 
-// 					title:"", 
-// 					cursor: "pointer"
-// 				} 
-// 		);
+		$("#grid").navButtonAdd('#pager',
+				{ 	caption:"Edit", 
+					buttonicon:"ui-icon-pencil", 
+					onClickButton: editRow,
+					position: "last", 
+					title:"", 
+					cursor: "pointer"
+				} 
+		);
 		
-// 		$("#grid").navButtonAdd('#pager',
-// 			{ 	caption:"Delete", 
-// 				buttonicon:"ui-icon-trash", 
-// 				onClickButton: deleteRow,
-// 				position: "last", 
-// 				title:"", 
-// 				cursor: "pointer"
-// 			} 
-// 		);
+		$("#grid").navButtonAdd('#pager',
+			{ 	caption:"Delete", 
+				buttonicon:"ui-icon-trash", 
+				onClickButton: deleteRow,
+				position: "last", 
+				title:"", 
+				cursor: "pointer"
+			} 
+		);
  
 		// Toolbar Search
 		$("#grid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true, defaultSearch:"cn"});
@@ -114,7 +114,7 @@
    		
 		// Get the currently selected row
 		$('#grid').jqGrid('editGridRow','new',
-	    		{ 	url: '${recordsUrl}', 					
+	    		{ 	url: '${recordsUrl}', 						
 					editData: {},
 	                serializeEditData: function(data){ 
 	                    data.id = 0; 
@@ -158,6 +158,130 @@
    		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
 	} // end of addRow
 	
+	function editRow() {
+   		$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:false, size:10}});
+   		$("#grid").jqGrid('setColProp', 'password', {hidden: false});
+   		$("#grid").jqGrid('setColProp', 'password', {editrules:{required:true}});
+   		
+		// Get the currently selected row
+		var row = $('#grid').jqGrid('getGridParam','selrow');
+		
+		if( row != null ) {
+		
+			$('#grid').jqGrid('editGridRow', row,
+				{	url: '${recordsUrl}', 
+					mtype: 'PUT',
+					editData: {},
+			        recreateForm: true,
+			        beforeShowForm: function(form) {
+			            $('#pData').hide();  
+			            $('#nData').hide();
+			            $('#password',form).addClass('ui-widget-content').addClass('ui-corner-all');
+			        },
+					beforeInitData: function(form) {},
+					closeAfterEdit: true,
+					reloadAfterSubmit:true,
+					afterSubmit : function(response, postdata) 
+					{ 
+			            var result = eval('(' + response.responseText + ')');
+						var errors = "";
+						
+			            if (result.success == false) {
+							for (var i = 0; i < result.message.length; i++) {
+								errors +=  result.message[i] + "<br/>";
+							}
+			            }  else {
+			            	$('#msgbox').text('Entry has been edited successfully');
+							$('#msgbox').dialog( 
+									{	title: 'Success',
+										modal: true,
+										buttons: {"Ok": function()  {
+											$(this).dialog("close");} 
+										}
+									});
+		                }
+				    	// only used for adding new records
+				    	var newId = null;
+			        	
+						return [result.success, errors, newId];
+					}
+				});
+		} else {
+			$('#msgbox').text('You must select a record first!');
+			$('#msgbox').dialog( 
+					{	title: 'Error',
+						modal: true,
+						buttons: {"Ok": function()  {
+							$(this).dialog("close");} 
+						}
+					});
+			$("#grid").jqGrid('setColProp', 'password', {hidden: true});
+		}
+	}
+		function deleteRow(obj, args) {
+			// Get the currently selected row
+		    var row = $('#grid').jqGrid('getGridParam','selrow');
+	 
+		    // A pop-up dialog will appear to confirm the selected action
+			if( row != null ) 
+				$('#grid').jqGrid( 'delGridRow', row,
+		          	{	url:'${recordsUrl}', 
+						mtype: 'DELETE',
+						postData: {
+						    id: id
+						},
+						recreateForm: true,
+					    beforeShowForm: function(form) {
+					    	//Change title
+					        $(".delmsg").replaceWith('<span style="white-space: pre;">' +
+					        		'Delete selected record?' + '</span>');
+			            	//hide arrows
+					        $('#pData').hide();  
+					        $('#nData').hide();
+					    },
+		          		reloadAfterSubmit:true,
+		          		closeAfterDelete: true,
+		          		serializeDelData: function (postdata) {
+			          	      var rowdata = $('#grid').getRowData(postdata.id);
+			          	      // append postdata with any information 
+			          	      return {id: postdata.id, oper: postdata.oper, username: rowdata.username};
+			          	},
+		          		afterSubmit : function(response, postdata) 
+						{ 
+				            var result = eval('(' + response.responseText + ')');
+							var errors = "";
+							
+				            if (result.success == false) {
+								for (var i = 0; i < result.message.length; i++) {
+									errors +=  result.message[i] + "<br/>";
+								}
+				            }  else {
+				            	$('#msgbox').text('Entry has been deleted successfully');
+								$('#msgbox').dialog( 
+										{	title: 'Success',
+											modal: true,
+											buttons: {"Ok": function()  {
+												$(this).dialog("close");} 
+											}
+										});
+			                }
+					    	// only used for adding new records
+					    	var newId = null;
+				        	
+							return [result.success, errors, newId];
+						}
+		          	});
+			else {
+				$('#msgbox').text('You must select a record first!');
+				$('#msgbox').dialog( 
+						{	title: 'Error',
+							modal: true,
+							buttons: {"Ok": function()  {
+								$(this).dialog("close");} 
+							}
+						});
+			}
+	}
 	</script>
 </head>
 <body>

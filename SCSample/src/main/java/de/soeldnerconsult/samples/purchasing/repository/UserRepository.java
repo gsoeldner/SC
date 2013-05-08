@@ -45,7 +45,13 @@ public interface UserRepository {
      */
 	void saveUser(User user) throws DataAccessException;
 	
-	
+	/**
+     * Delete an <code>User</code> to the data store, either inserting or updating it.
+     *
+     * @param  the id to delete
+     * 
+     */
+	void deleteUser(String id) throws DataAccessException;
 	
 	
 }
