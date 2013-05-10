@@ -14,6 +14,7 @@
 
 <spring:url value="/users" var="listUrl"></spring:url> 				
 (<a id="listUrl" href="${listUrl}">list</a>)
-
+<spring:url value="/users/ajax" var="ajaxUrl"></spring:url> 				
+(<a id="ajaxUrl" href="${ajaxUrl}">Ajax</a>)
 </body>
 </html>

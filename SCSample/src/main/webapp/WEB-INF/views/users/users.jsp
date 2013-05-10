@@ -221,14 +221,14 @@
 		function deleteRow(obj, args) {
 			// Get the currently selected row
 		    var row = $('#grid').jqGrid('getGridParam','selrow');
-	 
+	 		var reqId = function (postdata) {return postdata.id;};
 		    // A pop-up dialog will appear to confirm the selected action
 			if( row != null ) 
 				$('#grid').jqGrid( 'delGridRow', row,
-		          	{	url:'${recordsUrl}', 
+		          	{	url:'${recordsUrl}', //?id='+ reqId, 
 						mtype: 'DELETE',
-						postData: {
-						    id: id
+						deleteData: {
+						    id: function (postdata) {return postdata.id;}
 						},
 						recreateForm: true,
 					    beforeShowForm: function(form) {

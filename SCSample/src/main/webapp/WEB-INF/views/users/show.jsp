@@ -26,5 +26,23 @@
 </spring:url> 				
 (<a id="editUrl" href="${editUrl}">edit</a>)
 
+	<c:choose>
+         <c:when test="${delete}">
+         Are you sure?
+             <spring:url value="/users/{id}" var="userUrl">
+				<spring:param name="id" value="${user.id}" />
+			</spring:url> 
+			<form:form   method="DELETE">
+				<button id="deleteButton" type="submit">Yes	</button>
+				<a href="${userUrl}">cancel</a>
+			</form:form>			 
+         </c:when>
+         <c:otherwise>
+             <spring:url value="/users/{id}/delete" var="deleteUrl">
+					<spring:param name="id" value="${user.id}" />
+			</spring:url> 				
+			(<a id="deleteUrl" href="${deleteUrl}">delete</a>)
+         </c:otherwise>
+     </c:choose>
 </body>
 </html>

@@ -57,4 +57,16 @@ public class UserController {
 		sec.saveUser(user);			
 		return "redirect:" ;
 	}
+	
+	@RequestMapping(value="/delete",method = RequestMethod.GET)
+	public String delete(Model model) {
+		model.addAttribute("delete", true);
+		return "users/show";
+	}
+	
+	@RequestMapping(value="/delete",method = RequestMethod.DELETE)
+	public String delete(@PathVariable("id") String id) {			
+		sec.deleteUser(id);			
+		return "redirect:/users" ;
+	}
 }
