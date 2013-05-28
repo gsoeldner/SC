@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Home
 </h1>
 
 <spring:url value="/users" var="listUrl"></spring:url> 				

@@ -149,9 +149,9 @@ public class UsersController {
 			return new StatusResponse(true);
 		}
 	    
-	    @RequestMapping(value="/records", produces="application/json", method=RequestMethod.DELETE)
+	    @RequestMapping(value="/records/{id}", produces="application/json", method=RequestMethod.DELETE)
 	  		public @ResponseBody StatusResponse delete(				
-	  				@RequestParam String id) {
+	  				@PathVariable("id") String id) {
 	  			
 	  			sec.deleteUser(id);
 	  			return new StatusResponse(true);

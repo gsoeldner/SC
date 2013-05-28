@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -221,15 +222,12 @@
 		function deleteRow(obj, args) {
 			// Get the currently selected row
 		    var row = $('#grid').jqGrid('getGridParam','selrow');
-	 		var reqId = function (postdata) {return postdata.id;};
+			
 		    // A pop-up dialog will appear to confirm the selected action
 			if( row != null ) 
 				$('#grid').jqGrid( 'delGridRow', row,
-		          	{	url:'${recordsUrl}', //?id='+ reqId, 
-						mtype: 'DELETE',
-						deleteData: {
-						    id: function (postdata) {return postdata.id;}
-						},
+		          	{	url:'${recordsUrl}/' + row, 
+						mtype: 'DELETE',						
 						recreateForm: true,
 					    beforeShowForm: function(form) {
 					    	//Change title
