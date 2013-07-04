@@ -30,6 +30,8 @@ import org.jadira.usertype.dateandtime.joda.PersistentDateTime;
 @Table(name="user")
 public class User extends BaseEntity{
 	
+	//test
+	
 	@Column(name = "username")
 	@NotEmpty
 	@Size(max=40)
